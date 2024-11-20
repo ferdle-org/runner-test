@@ -12,7 +12,12 @@ permissions:
 
 jobs:
   perform_ci:
-    runs-on: [windows-2022, windows-2019]
+    strategy:
+      matrix:
+        runs-on: [windows-2022, windows-2019]
+
+    runs-on: ${{ matrix.runs-on }}
+    
     steps:
       - name: Setup SSH keys to pull prebuilt repo
         uses: shimataro/ssh-key-action@v2.7.0
