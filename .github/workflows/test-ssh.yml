@@ -19,5 +19,4 @@ jobs:
     steps:
       - name: Attempt to checkout prebuilt repo
         shell: bash
-        run: |
-          GIT_TRACE=1 GIT_TRANSFER_TRACE=1 GIT_CURL_VERBOSE=1 git clone --verbose --depth=1 git@github.com:ferdlestier/parquet.git
+        run: git --version
