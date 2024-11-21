@@ -1,0 +1,22 @@
+name: SSH Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
+jobs:
+  perform_ci:
+    strategy:
+      matrix:
+        runs-on: [windows-2022, windows-2019]
+
+    runs-on: ${{ matrix.runs-on }}
+    
+    steps:
+      - name: Attempt to checkout prebuilt repo
+        run: |
+          GIT_TRACE=1 GIT_TRANSFER_TRACE=1 GIT_CURL_VERBOSE=1 git clone --verbose --depth=1 git@github.com:ferdlestier/parquet.git
